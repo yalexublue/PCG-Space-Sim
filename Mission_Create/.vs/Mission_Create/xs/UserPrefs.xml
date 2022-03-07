@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{5A2E6642-0D3D-28C9-0825-D36BC43CA462}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GenerateMaps.cs">
+    <Files>
+      <File FileName="Assets/Scripts/SpaceShip.cs" Line="15" Column="6" />
+      <File FileName="Assets/Scripts/QuestGenerator.cs" Line="14" Column="9" />
+      <File FileName="Assets/Scripts/Quest.cs" />
+      <File FileName="Assets/Scripts/GenerateMaps.cs" Line="46" Column="39" />
+      <File FileName="Assets/map.cs" Line="11" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="f0c851b1-3806-4218-b6ac-5467d05b3dcc" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
