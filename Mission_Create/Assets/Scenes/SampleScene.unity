@@ -393,11 +393,10 @@ MonoBehaviour:
   rewardSmallShip: 100
   rewardMediumShip: 500
   rewardLargeShip: 1000
-  randUpStation: 0
-  randShop: 0
-  numUpStation: 3
-  maxUpStation: 2
-  minUpStation: 0
+  randUpStation: 1
+  randShop: 1
+  isShopProbability: 0.2
+  isUpProbability: 0.2
 --- !u!4 &1882914851
 Transform:
   m_ObjectHideFlags: 0

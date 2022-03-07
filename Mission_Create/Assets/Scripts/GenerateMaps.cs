@@ -51,20 +51,14 @@ public class GenerateMaps : MonoBehaviour
     // 2D array used to store all map class instances.
     public GameObject[][] layers;
     private int currDifficulty = 0;
-   
 
+    [Header("Chance to turn a map to shop or up station")]
     [Tooltip("Choose to have random number of upstation through out map")]
     public bool randUpStation = true;
     public bool randShop = true;
-    [Tooltip("Randomly generate upgrade stations other beside the station on layer 4")]
-    public int numUpStation = 0;
-    public int maxUpStation = 2;
-    public int minUpStation = 0;
-    private int[] shopLocations;
-    private int[] upLocations;
-
-    private int[] shopLayers;
-    private int[] upLayers;
+    [Tooltip("Randomly chance to make a map shop or upgrade station")]
+    public float isShopProbability = 0.2f;
+    public float isUpProbability = 0.2f; 
 
     private int lastNumber;
     
@@ -91,11 +85,8 @@ public class GenerateMaps : MonoBehaviour
             layers[i] = new GameObject[mapInLayer];
             
         }
-        if (randUpStation)
-        {
-            numUpStation = UnityEngine.Random.Range(minUpStation, maxUpStation);
-        }
-        //TODO: if random location of shop or upgrade is desired can be set up here. 
+        
+        
 
 
 
@@ -125,24 +116,36 @@ public class GenerateMaps : MonoBehaviour
                 layers[i][0] = Instantiate(map);
                 layers[i][0].GetComponent<map>().isUpgradeStation = true;
             }
-
+            
             else {
                 for (int j = 0; j < layers[i].Length; j++)
                 {
-
+                    
                     layers[i][j] = Instantiate(map);
-                    layers[i][j].GetComponent<map>().difficultyLevel = currDifficulty;
+                    if (randShop && Random.value > (1 - isShopProbability))
+                    {
+                        layers[i][j].GetComponent<map>().isShop = true;
+                    }
+                    else if (randUpStation && Random.value > (1 - isUpProbability))
+                    {
+                        layers[i][j].GetComponent<map>().isUpgradeStation = true;
+                    }
+                    else
+                    {
+                        layers[i][j].GetComponent<map>().difficultyLevel = currDifficulty;
 
-                    int numSmall = UnityEngine.Random.Range(minSmallShip, maxSmallShip);
-                    int numMid = UnityEngine.Random.Range(minMediumShip, maxMediumShip);
-                    int numLarge = UnityEngine.Random.Range(minLargeShip, maxLargeShip);
-                    layers[i][j].GetComponent<map>().smallShip = numSmall;
-                    layers[i][j].GetComponent<map>().mediumShip = numMid;
-                    layers[i][j].GetComponent<map>().largeShip = numLarge;
+                        int numSmall = UnityEngine.Random.Range(minSmallShip, maxSmallShip);
+                        int numMid = UnityEngine.Random.Range(minMediumShip, maxMediumShip);
+                        int numLarge = UnityEngine.Random.Range(minLargeShip, maxLargeShip);
+                        layers[i][j].GetComponent<map>().smallShip = numSmall;
+                        layers[i][j].GetComponent<map>().mediumShip = numMid;
+                        layers[i][j].GetComponent<map>().largeShip = numLarge;
 
-                    layers[i][j].GetComponent<map>().moneyReward = numSmall * rewardSmallShip + numMid * rewardMediumShip +
-                        numLarge * rewardLargeShip;
-                    layers[i][j].GetComponent<map>().healthReward = (int)(layers[i][j].GetComponent<map>().moneyReward / 10);
+                        layers[i][j].GetComponent<map>().moneyReward = numSmall * rewardSmallShip + numMid * rewardMediumShip +
+                            numLarge * rewardLargeShip;
+                        layers[i][j].GetComponent<map>().healthReward = (int)(layers[i][j].GetComponent<map>().moneyReward / 10);
+                    }
+                    
                 }
             }
         }
